@@ -1,0 +1,69 @@
+<div class="weather-card">
+  <div class="header">
+    <h3>Weather Information</h3>
+    <button (click)="toggleUnit()">
+      {{ isCelsius ? '°C → °F' : '°F → °C' }}
+    </button>
+  </div>
+
+  <div *ngIf="weather" class="weather-info">
+    <div class="temperature-grid">
+      <div class="temperature-box">
+        <p>Current</p>
+
+        <p class="temperature">
+          {{ formatTemperature(weather.current_weather.temperature) }}
+        </p>
+      </div>
+      <div class="temperature-box">
+        <p>Feels Like</p>
+        <p class="temperature">
+          {{ formatTemperature(getCurrentFeelsLike()) }}
+        </p>
+      </div>
+    </div>
+
+    <div class="forecast">
+      <p>Today's Forecast:</p>
+      <div class="forecast-grid">
+        <div>
+          <span class="label">High: </span>
+          <span class="value">{{ formatTemperature(getDailyHigh()) }}</span>
+        </div>
+        <div>
+          <span class="label">Low: </span>
+          <span class="value">{{ formatTemperature(getDailyLow()) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="additional-info">
+      <div class="info-grid">
+        <div class="info-box">
+          <p>UV Index</p>
+          <p class="description">{{ getUVIndex() }}</p>
+          <p class="detail">{{ getUVDescription(getUVIndex()) }}</p>
+        </div>
+        <div class="info-box">
+          <p>Rain Chance</p>
+          <p class="description">{{ getPrecipitationProbability() }}%</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="additional-info">
+      <p>Conditions</p>
+      <div class="weather-image">
+        <img
+          [src]="getWeatherImage(weather.current_weather.weathercode)"
+          alt="Weather Condition"
+        />
+      </div>
+      <p class="description">
+        {{ getWeatherDescription(weather.current_weather.weathercode) }}
+      </p>
+    </div>
+  </div>
+
+  <div *ngIf="!weather" class="loading">Loading weather data...</div>
+</div>

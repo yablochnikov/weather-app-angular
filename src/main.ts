@@ -1,7 +1,17 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { Component } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
+import { UserListComponent } from './app/pages/user-list/user-list.component';
 
-import { AppModule } from './app/app.module';
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [UserListComponent],
+  template: `<app-user-list></app-user-list>`,
+  styleUrls: ['./styles.scss'],
+})
+export class App {}
 
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(App, {
+  providers: [provideHttpClient()],
+});

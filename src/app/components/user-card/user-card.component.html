@@ -1,0 +1,17 @@
+<div class="card">
+  <img [src]="user.picture.large" [alt]="user.name.first" class="card-image" />
+  <div class="card-content">
+    <h2 class="card-title">{{ user.name.first }} {{ user.name.last }}</h2>
+    <div class="card-info">
+      <p><span class="label">Gender:</span> {{ user.gender }}</p>
+      <p><span class="label">Email:</span> {{ user.email }}</p>
+      <p>
+        <span class="label">Location:</span>
+        {{ user.location.city }}, {{ user.location.country }}
+      </p>
+    </div>
+    <div class="weather-card">
+      <app-weather-card [weather]="weather"></app-weather-card>
+    </div>
+  </div>
+</div>

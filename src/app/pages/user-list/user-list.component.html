@@ -1,0 +1,11 @@
+<div class="user-directory">
+  <h1>Weather App</h1>
+  <div class="user-cards">
+    <ng-container *ngFor="let userData of usersWithWeather">
+      <app-user-card
+        [user]="userData.user"
+        [weather]="userData.weather"
+      ></app-user-card>
+    </ng-container>
+  </div>
+</div>
